@@ -1,4 +1,4 @@
-import News from "../models/User.js";
+import News from "../models/News.js";
 
 const create = (body) => News.create(body);
 const findAll = () => News.find();

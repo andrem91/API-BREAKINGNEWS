@@ -20,14 +20,14 @@ const NewsSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
   likes: {
     type: Array,
     require: true,
   },
   comments: {
-    Type: Array,
+    type: Array,
     require: true,
   },
 });

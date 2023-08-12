@@ -1,4 +1,4 @@
-import { create, findAll } from "../services/news.service.js";
+import newsService from "../services/news.service.js";
 
 const create = async (req, res) => {
   try {
@@ -8,11 +8,11 @@ const create = async (req, res) => {
       res.status(400).send({ message: "Submit all fields for registration" });
     }
 
-    await create({
+    await newsService.create({
       title,
       text,
       banner,
-      id: "objectIdFake1",
+      user: { _id: "64cced2dc52df2a69b7069c6" },
     });
 
     res.send(201);
@@ -21,9 +21,13 @@ const create = async (req, res) => {
   }
 };
 
-const findAll = (req, res) => {
-  const news = [];
+const findAll = async (req, res) => {
+  const news = await newsService.findAll();
+  if (news.length === 0) {
+    return res.status(400).send({ message: "There are no registered news" });
+  }
+
   res.send(news);
 };
 
-export default { create, findAll };
+export { create, findAll };
